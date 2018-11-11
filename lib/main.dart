@@ -177,13 +177,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   responder.response(typeController.text).then((response) {
                     print('Respionse');
                     print(response);
-                    print(response.toUpperCase()!=
-                        "I'm sorry, I did not understand your message. \nCould you please use simpler words?".toUpperCase());
-                    if (response !=
-                        "I'm sorry, I did not understand your message. \nCould you please use simpler words?")
+                    print(response.toUpperCase().contains(
+                        "I did not understand your message".toUpperCase()));
+                    if (response.toUpperCase().contains(
+                        "I did not understand your message".toUpperCase())) {
+                      widgetList.add(
+                          botText("I'm sorry, I did not understand your message. \nCould you please use simpler words?", true));
+                    } else {
                       widgetList.add(
                           botText('Okay, may I know how old you are?', true));
-                    widgetList.add(ageText());
+                      widgetList.add(ageText());
+                    }
 
                     chatHistory += "$response\n";
 

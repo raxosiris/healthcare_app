@@ -51,7 +51,8 @@ class Responder
 
   String diagnosisFromJson(String json)
   {
-    // diagnosis with highest accuracy is after name, but before the following quote mark.
+    print(json);
+    // diagnosi;s with highest accuracy is after name, but before the following quote mark.
     return "I think you have "
         + json
         .split("\"Name\":\"")[1] // first thing after Name ...
