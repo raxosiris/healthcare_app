@@ -53,20 +53,44 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget botText(String message) {
-    return Container(
-        padding: EdgeInsets.all(10.0),
-        margin: EdgeInsets.all(8.0),
-        decoration: new BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: Colors.green,
-          borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-        ),
-        child: Text(
-          message,
-          style: TextStyle(fontSize: 20.0),
-        ));
+    return Wrap(
+      children: <Widget>[
+        Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.all(8.0),
+            decoration: new BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.green,
+              borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+            ),
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 20.0),
+            )),
+      ],
+    );
   }
 
+  Widget userText(String message) {
+    return Wrap(
+      alignment: WrapAlignment.end,
+      children: <Widget>[
+        Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.all(8.0),
+            decoration: new BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.red,
+              borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+            ),
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 20.0),
+              textAlign: TextAlign.right,
+            )),
+      ],
+    );
+  }
   Widget ageText() {
     Iterable<String> list = ageCategoriesToApproxAge.keys;
 
@@ -76,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       options.add(GestureDetector(
         child: Container(
             padding: EdgeInsets.all(10.0),
-            margin: EdgeInsets.all(8.0),
+            margin: EdgeInsets.all(4.0),
             decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.yellow,
@@ -95,6 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Wrap(
+
+      alignment: WrapAlignment.start,
       children: options,
     );
   }
@@ -105,6 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
         GestureDetector(
           child: Container(
               padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(4.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.yellow,
@@ -126,6 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
         GestureDetector(
           child: Container(
               padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(4.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.yellow,
@@ -154,6 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
         GestureDetector(
           child: Container(
               padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(4.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.yellow,
@@ -174,6 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
         GestureDetector(
           child: Container(
               padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(4.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.yellow,
@@ -193,20 +223,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget userText(String message) {
-    return Container(
-        padding: EdgeInsets.all(10.0),
-        decoration: new BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: Colors.red,
-          borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-        ),
-        child: Text(
-          message,
-          style: TextStyle(fontSize: 20.0),
-          textAlign: TextAlign.right,
-        ));
-  }
 
   @override
   Widget build(BuildContext context) {
