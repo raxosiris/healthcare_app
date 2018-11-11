@@ -51,19 +51,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget botText(String message) {
     return Container(
+        padding: EdgeInsets.all(10.0),
+        decoration: new BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.green,
+          borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+        ),
         child: Text(
-      message,
-      style: TextStyle(fontSize: 20.0),
-    ));
+          message,
+          style: TextStyle(fontSize: 20.0),
+        ));
   }
 
   Widget userText(String message) {
     return Container(
+      decoration: new BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Colors.red,
+        borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+      ),
         child: Text(
-      message,
-      style: TextStyle(fontSize: 20.0),
-      textAlign: TextAlign.right,
-    ));
+          message,
+          style: TextStyle(fontSize: 20.0),
+          textAlign: TextAlign.right,
+        ));
   }
 
   @override
@@ -74,19 +85,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Stack(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: ListView(
-                children: widgetList,
+              padding: const EdgeInsets.only(bottom: 60.0),
+              child: Container(
+               // color: Colors.red,
+                child: ListView.builder(
+                    itemCount: widgetList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return widgetList[index];
+                    }),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 20.0,
-                child: TextField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Type to ChatBot...'),
-                    controller: typeController),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Type to ChatBot...'),
+                controller: typeController,
+                onSubmitted: (s) {
+                  print(s);
+                  widgetList.add(userText(s));
+                  final responder = Responder(2018 - approxAge, gender);
+                  responder.response(typeController.text).then((response) {
+                    print('Respionse');
+                    print(response);
+                    widgetList.add(botText(response));
+                    chatHistory += "$response\n";
+
+                    setState(() {});
+                  });
+                  chatHistory += "${typeController.text}\n";
+                  typeController.text = "";
+                },
               ),
             )
           ],
