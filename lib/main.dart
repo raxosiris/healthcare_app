@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 
-  Widget ageText(String message) {
+  Widget ageText() {
     Iterable<String> list = ageCategoriesToApproxAge.keys;
 
     List<Widget> options = List();
@@ -79,16 +79,16 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
             ),
             child: Text(
-              message,
+              s,
               style: TextStyle(fontSize: 20.0),
             )),
-        onTap: (){
-          
-        },
-
-
+        onTap: () {},
       ));
     }
+
+    return Row(children: options,);
+
+
   }
 
   Widget userText(String message) {
@@ -134,6 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   widgetList.add(userText(s));
                   widgetList
                       .add(botText('Okay, may I know how old you are?', true));
+                  widgetList.add(ageText());
                   final responder = Responder(2018 - approxAge, gender);
                   setState(() {});
                   /*  responder.response(typeController.text).then((response) {
