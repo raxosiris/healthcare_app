@@ -7,10 +7,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-        title: 'Daktari Mkononi',
+        title: 'Health Diagnostic AI',
         theme: new ThemeData(primarySwatch: Colors.blue),
-        home: new MyHomePage(title: 'Daktari Mkononi'));
+        home: new MyHomePage(title: 'Health Diagnostic AI'));
   }
 }
 
@@ -55,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget botText(String message) {
     return Container(
         padding: EdgeInsets.all(10.0),
-        margin: EdgeInsets.all(8.0),
         decoration: new BoxDecoration(
           shape: BoxShape.rectangle,
           color: Colors.green,
@@ -76,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
       options.add(GestureDetector(
         child: Container(
             padding: EdgeInsets.all(10.0),
-            margin: EdgeInsets.all(8.0),
             decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.yellow,
