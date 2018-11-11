@@ -114,9 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: () {
             gender = Gender.MALE;
             widgetList.add(botText(diagnosis));
-            setState(() {
-
-            });
+            widgetList.add(botText(
+                'Would you like to see the locations of nearby health services to you?'));
+            widgetList.add(showLocationText());
+            setState(() {});
           },
         ),
         GestureDetector(
@@ -134,10 +135,56 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: () {
             gender = Gender.FEMALE;
             widgetList.add(botText(diagnosis));
-            setState(() {
+            widgetList.add(botText(
+                'Would you like to see the locations of nearby health services to you?'));
+            widgetList.add(showLocationText());
+            setState(() {});
+          },
+        )
+      ],
+    );
+  }
 
-            });
-            },
+  Widget showLocationText() {
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.yellow,
+                borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              child: Text(
+                'YES',
+                style: TextStyle(fontSize: 20.0),
+              )),
+          onTap: () {
+            widgetList.add(Image.asset('images/location1.png'));
+            widgetList.add(Image.asset('images/location1.png'));
+            widgetList.add(Image.asset('images/location1.png'));
+
+            setState(() {});
+          },
+        ),
+        GestureDetector(
+          child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.yellow,
+                borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              child: Text(
+                'No thanks',
+                style: TextStyle(fontSize: 20.0),
+              )),
+          onTap: () {
+            widgetList.add(botText('Thank You!'));
+
+            setState(() {});
+          },
         )
       ],
     );
