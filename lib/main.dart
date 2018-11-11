@@ -171,15 +171,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 onSubmitted: (s) {
                   print(s);
                   widgetList.add(userText(s));
-                  widgetList
-                      .add(botText('Okay, may I know how old you are?', true));
-                  widgetList.add(ageText());
+
                   final responder = Responder(2018 - approxAge, gender);
                   setState(() {});
-                    responder.response(typeController.text).then((response) {
+                  responder.response(typeController.text).then((response) {
                     print('Respionse');
                     print(response);
-                    widgetList.add(botText(response));
+                    print(response.toUpperCase()!=
+                        "I'm sorry, I did not understand your message. \nCould you please use simpler words?".toUpperCase());
+                    if (response !=
+                        "I'm sorry, I did not understand your message. \nCould you please use simpler words?")
+                      widgetList.add(
+                          botText('Okay, may I know how old you are?', true));
+                    widgetList.add(ageText());
+
                     chatHistory += "$response\n";
 
                     setState(() {});
