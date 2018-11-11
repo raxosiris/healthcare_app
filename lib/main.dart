@@ -176,14 +176,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   widgetList.add(ageText());
                   final responder = Responder(2018 - approxAge, gender);
                   setState(() {});
-                  /*  responder.response(typeController.text).then((response) {
+                    responder.response(typeController.text).then((response) {
                     print('Respionse');
                     print(response);
                     widgetList.add(botText(response));
                     chatHistory += "$response\n";
 
                     setState(() {});
-                  });*/
+                  });
                   chatHistory += "${typeController.text}\n";
                   typeController.text = "";
                 },
