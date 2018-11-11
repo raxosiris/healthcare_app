@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.all(10.0),
             decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
-              color: Colors.green,
+              color: Colors.yellow,
               borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
             ),
             child: Text(
