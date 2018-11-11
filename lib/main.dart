@@ -192,6 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget userText(String message) {
     return Container(
+        padding: EdgeInsets.all(10.0),
         decoration: new BoxDecoration(
           shape: BoxShape.rectangle,
           color: Colors.red,
