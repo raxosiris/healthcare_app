@@ -82,13 +82,52 @@ class _MyHomePageState extends State<MyHomePage> {
               s,
               style: TextStyle(fontSize: 20.0),
             )),
-        onTap: () {},
+        onTap: () {
+          widgetList.add(botText('And, are you a male or a female?', true));
+          widgetList.add(genderText());
+          setState(() {});
+        },
       ));
     }
 
-    return Row(children: options,);
+    return Row(
+      children: options,
+    );
+  }
 
-
+  Widget genderText() {
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.yellow,
+                borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              child: Text(
+                'MALE',
+                style: TextStyle(fontSize: 20.0),
+              )),
+          onTap: () {},
+        ),
+        GestureDetector(
+          child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.yellow,
+                borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              child: Text(
+                'FEMALE',
+                style: TextStyle(fontSize: 20.0),
+              )),
+          onTap: () {},
+        )
+      ],
+    );
   }
 
   Widget userText(String message) {
