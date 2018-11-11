@@ -90,27 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ));
     }
-    for (String s in list) {
-      options.add(GestureDetector(
-        child: Container(
-            padding: EdgeInsets.all(10.0),
-            decoration: new BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Colors.yellow,
-              borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-            ),
-            child: Text(
-              s,
-              style: TextStyle(fontSize: 20.0),
-            )),
-        onTap: () {
-          widgetList.add(botText('And, are you a male or a female?'));
-          widgetList.add(genderText());
-          setState(() {});
-        },
-      ));
-    }
-
+    
     return Wrap(
       children: options,
     );
