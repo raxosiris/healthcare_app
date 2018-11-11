@@ -34,6 +34,14 @@ class _MyHomePageState extends State<MyHomePage> {
   var chatHistory = "Welcome! What seems to be the problem?\n";
   var approxAge = 50;
   var gender = Gender.MALE;
+  List<Widget> widgetList = List();
+
+  @override
+  void initState() {
+    super.initState();
+
+    widgetList.add(botText('Hi, how are you feeling today. Any symptoms?'));
+  }
 
   @override
   void dispose() {
@@ -41,11 +49,50 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  Widget botText(String message) {
+    return Container(
+        child: Text(
+      message,
+      style: TextStyle(fontSize: 20.0),
+    ));
+  }
+
+  Widget userText(String message) {
+    return Container(
+        child: Text(
+      message,
+      style: TextStyle(fontSize: 20.0),
+      textAlign: TextAlign.right,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text(widget.title)),
-        body: new Center(
+      appBar: new AppBar(title: new Text(widget.title)),
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: ListView(
+                children: widgetList,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 20.0,
+                child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Type to ChatBot...'),
+                    controller: typeController),
+              ),
+            )
+          ],
+        ),
+      ),
+      /*new Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -75,8 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: InputDecoration(
                       border: InputBorder.none, hintText: 'Type to ChatBot...'),
                   controller: typeController)
-            ])),
-        floatingActionButton: new FloatingActionButton(
+            ])),*/
+      /* floatingActionButton: new FloatingActionButton(
             onPressed: () // buggy :(
                 {
               final responder = Responder(2018 - approxAge, gender);
@@ -89,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
               });
             },
             tooltip: 'Increment',
-            child: new Icon(Icons.add)));
+            child: new Icon(Icons.add))*/
+    );
   }
 }
