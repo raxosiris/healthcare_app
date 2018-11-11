@@ -24,6 +24,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final typeController = TextEditingController();
+  String diagnosis;
+  int age = 0;
   final ageCategoriesToApproxAge = {
     'Child': 10,
     'Teenager': 16,
@@ -40,8 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    widgetList
-        .add(botText('Hi, how are you feeling today. Any symptoms?', false));
+    widgetList.add(botText('Hi, how are you feeling today. Any symptoms?'));
   }
 
   @override
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  Widget botText(String message, bool showOptions) {
+  Widget botText(String message) {
     return Container(
         padding: EdgeInsets.all(10.0),
         decoration: new BoxDecoration(
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(fontSize: 20.0),
             )),
         onTap: () {
-          widgetList.add(botText('And, are you a male or a female?', true));
+          widgetList.add(botText('And, are you a male or a female?'));
           widgetList.add(genderText());
           setState(() {});
         },
@@ -110,7 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 'MALE',
                 style: TextStyle(fontSize: 20.0),
               )),
-          onTap: () {},
+          onTap: () {
+            gender = Gender.MALE;
+            widgetList.add(botText(diagnosis));
+            setState(() {
+
+            });
+          },
         ),
         GestureDetector(
           child: Container(
@@ -124,7 +131,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 'FEMALE',
                 style: TextStyle(fontSize: 20.0),
               )),
-          onTap: () {},
+          onTap: () {
+            gender = Gender.FEMALE;
+            widgetList.add(botText(diagnosis));
+            setState(() {
+
+            });
+            },
         )
       ],
     );
@@ -181,11 +194,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         "I did not understand your message".toUpperCase()));
                     if (response.toUpperCase().contains(
                         "I did not understand your message".toUpperCase())) {
-                      widgetList.add(
-                          botText("I'm sorry, I did not understand your message. \nCould you please use simpler words?", true));
+                      widgetList.add(botText(
+                          "I'm sorry, I did not understand your message. \nCould you please use simpler words?"));
                     } else {
-                      widgetList.add(
-                          botText('Okay, may I know how old you are?', true));
+                      diagnosis = response;
+                      widgetList
+                          .add(botText('Okay, may I know how old you are?'));
                       widgetList.add(ageText());
                     }
 
