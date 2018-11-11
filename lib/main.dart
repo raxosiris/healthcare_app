@@ -40,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    widgetList.add(botText('Hi, how are you feeling today. Any symptoms?'));
+    widgetList
+        .add(botText('Hi, how are you feeling today. Any symptoms?', false));
   }
 
   @override
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  Widget botText(String message) {
+  Widget botText(String message, bool showOptions) {
     return Container(
         padding: EdgeInsets.all(10.0),
         decoration: new BoxDecoration(
@@ -63,13 +64,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 
+  Widget ageText(String message) {
+    Iterable<String> list = ageCategoriesToApproxAge.keys;
+
+    List<Widget> options = List();
+
+    for (String s in list) {
+      options.add(GestureDetector(
+        child: Container(
+            padding: EdgeInsets.all(10.0),
+            decoration: new BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.green,
+              borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+            ),
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 20.0),
+            )),
+        onTap: (){
+          
+        },
+
+
+      ));
+    }
+  }
+
   Widget userText(String message) {
     return Container(
-      decoration: new BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: Colors.red,
-        borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-      ),
+        decoration: new BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.red,
+          borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+        ),
         child: Text(
           message,
           style: TextStyle(fontSize: 20.0),
@@ -87,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 60.0),
               child: Container(
-               // color: Colors.red,
+                // color: Colors.red,
                 child: ListView.builder(
                     itemCount: widgetList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -104,15 +132,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 onSubmitted: (s) {
                   print(s);
                   widgetList.add(userText(s));
+                  widgetList
+                      .add(botText('Okay, may I know how old you are?', true));
                   final responder = Responder(2018 - approxAge, gender);
-                  responder.response(typeController.text).then((response) {
+                  setState(() {});
+                  /*  responder.response(typeController.text).then((response) {
                     print('Respionse');
                     print(response);
                     widgetList.add(botText(response));
                     chatHistory += "$response\n";
 
                     setState(() {});
-                  });
+                  });*/
                   chatHistory += "${typeController.text}\n";
                   typeController.text = "";
                 },
